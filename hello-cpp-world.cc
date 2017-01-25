@@ -5,7 +5,7 @@
 #include <vector>
 #include <algorithm>
 
-std::vector<std::string> findMatches(std::string, std::string, std::vector<std::string>*, std::vector<std::string>*);
+void findMatches(std::string, std::string, std::vector<std::string>*, std::vector<std::string>*, std::vector<std::vector<std::string>>*);
 void printVoFV(std::vector<std::vector<std::string>>*);
 void printVector(std::vector<std::string>*);
 
@@ -37,28 +37,23 @@ int main() {
     endWord  = "poop";
     matches.push_back(startWord);
     matchesList.push_back(matches);
-    int k =0;
-    while(matchesList[matchesList.size()-1][matchesList[matchesList.size()-1].size()-1] != endWord)
-    {
-        matchesList.push_back(findMatches(matchesList[matchesList.size()-1][matchesList[matchesList.size()-1].size()-1], endWord, &dictionary, &(matchesList[k])));
-        k++;
-        printVoFV(&matchesList);
-    }
-    std::cout << "Hello World!" << std::endl;
-}
-/*
-Take a reference to a vector and return a vector that is one element larger, the last element should be one char different from the second to last element
 
+    printVector(&matches);
+    findMatches(startWord, endWord, &dictionary, &matches, &matchesList);
+    printVoFV(&matchesList);
+}
+
+/*
+Take a reference to a vector and pushback a vector that is one element larger, the last element should be one char different from the second to last element
 */
 
-std::vector<std::string> findMatches(std::string startWord, std::string endWord, std::vector<std::string>* dict, std::vector<std::string>* smallVector)
+void findMatches(std::string startWord, std::string endWord, std::vector<std::string>* dict, std::vector<std::string>* smallVector, std::vector<std::vector<std::string>>* motherOfAllVectors)
 {
-    
     for(int i =0; i < (*dict).size(); i++)
     {
         int errs = 0;
         std::vector<std::string> tmpVector = (*smallVector);
-        std::string dictWord=(*dict)[i];
+        std::string dictWord = (*dict)[i];
         if(startWord.length() == dictWord.length()) 
         {
             for(int j = 0; j < startWord.length(); j++)
@@ -69,24 +64,19 @@ std::vector<std::string> findMatches(std::string startWord, std::string endWord,
                 }
             }
         }
-        if (errs==1)
+        if (errs==1)//&& std::find(tmpVector.begin(), tmpVector.end(), dictWord) != tmpVector.end())
         {
-            if(std::find(tmpVector.begin(), tmpVector.end(), dictWord) != tmpVector.end())
-            {
-                tmpVector.push_back(dictWord);
-                return tmpVector;
-            }
-            else
-            {
-                return findMatches(startWord, endWord, dict, smallVector);
-            }
+            printVector(&tmpVector);
+            tmpVector.push_back(dictWord);
+            (*motherOfAllVectors).push_back(tmpVector);
+            printVoFV(motherOfAllVectors);
         }
     }
 }
 
 void printVector(std::vector<std::string>* vectorToBePrinted)
 {
-    for(int interator = 0; interator < (*vectorToBePrinted).size()-1; interator++)
+    for(int interator = 0; interator < (*vectorToBePrinted).size(); interator++)
     {
         std::cout << (*vectorToBePrinted)[interator] << ", ";
     }
@@ -97,6 +87,6 @@ void printVoFV(std::vector<std::vector<std::string>>* godThisIsAHugeVector)
     for(int iterator0 = 0; iterator0 < (*godThisIsAHugeVector).size()-1; iterator0++)
     {
         printVector(&(*godThisIsAHugeVector)[iterator0]);
-        std::cout << std::endl;
+        std::cout << iterator0;
     }
 }
