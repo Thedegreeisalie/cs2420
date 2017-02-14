@@ -1,8 +1,11 @@
-#ifndef TREE_H
-#define TREE_H
+#ifndef _TREE_H_
+#define _TREE_H_
 
 #include "Node.h"
 #include <vector>
+#include <queue>
+#include <fstream>
+#include <iostream>
 
 class Tree
 {
@@ -14,11 +17,11 @@ class Tree
         std::string endWord;
     
     public:
-        Tree();
-        void buildTree(std::string, std::string);
-        void buildLevel(Node*, std::vector<std::string>);
-        std::vector<std::string>getSibs(Node*);
+        Tree(std::string, std::string);
+        void buildLevel(Node*, std::vector<std::string>, std::string, std::vector<std::string>);
+        std::vector<std::string>getSibs(Node*, std::vector<std::string>*);
         void printTree(Node*, std::string);
+        std::string findMatch(std::string, std::vector<std::string>*);
 };
 
 

@@ -2,16 +2,17 @@
 #define NODE_H
 
 #include <string>
+#include <vector>
 
 class Node
 {
     public:
         std::string word;
-        std::string parent;
-        Node *left;
-        Node *sibling;
+        
+        Node* left = nullptr;
+        Node* right = nullptr;
+        
         Node(std::string);
-        Node(std::string, std::string);
 };
 
 #endif

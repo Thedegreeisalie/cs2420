@@ -1,13 +1,10 @@
 #include "Node.h"
 
-Node::Node(std::string word)
-{
-    this->left=nullptr;
-    this->sibling=nullptr;
+Node::Node(std::string initWord){
+    this->word = initWord;
 }
 
-Node::Node(std::string word, std::string parent)
-{
-    Node newbie = Node(word);
-    newbie.parent = parent;   
-}
+// Node::Node(Node child)
+// {
+//     this->children.push_back(child);
+// }
