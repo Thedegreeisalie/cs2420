@@ -1,0 +1,35 @@
+containterall > taaaable > th:hover{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: darkgray;
+}
+thead:first-of-type{
+    background-color:white;
+}
+tbody >tr:nth-child(odd){
+    background-color:white;
+}
+tbody >tr:nth-child(even){
+    background-color:gray;
+}
+
+tbody > th:hover{
+    background-color:red;
+}
+
+dodges{
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+}
+a:visited{
+   color:blue;
+}
+body{
+    background-image:url("http://i.imgur.com/MgpJmha.jpg");
+    background-attachment:fixed;
+    background-size: cover;
+    background-color: black;
+    text-align:center;
+    border: 5px solid darkgray;
+}
