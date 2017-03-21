@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Don't click here</title>
+      <link href="style.css" rel="stylesheet">
+   </head>
+   <body>
+      <div class="row">
+         <div class="coloumn1 columns">
+            <span id="tribTitle">trib</span>
+            <span id="range1">5</span>
+         </div>
+         <div class="coloumn2 columns">
+            <input id='slider1'  start="0" min="1" max="10" step="1" onchange="printValue('range1', this.value)" type="range">
+         </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+         <div class="coloumn1 columns">
+            <spanid id="pellTitle">pell</span>
+            <span id="range2">5</span>
+         </div>
+         <div class="coloumn2 columns">
+            <input id='slider2'  start="0" min="1" max="10" step="1" onchange="printValue('range2', this.value)" type="range">
+         </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+         <div class="coloumn1 columns">
+            <spanid id="fibtitle">fib</span>
+            <span id="range3">5</span>
+         </div>
+         <div class="coloumn2 columns">
+            <input id='slider3'  start="0" min="1" max="10" step="1" onchange="printValue('range3', this.value)" type="range">
+         </div>
+      </div>
+      <br>
+      <br>
+      <script src="scratchpad.js" type="text/javascript"></script>
+      <script language = "javascript">
+      
+            function printValue(spanToChange, newValue) {
+               document.getElementById(spanToChange).innerHTML=newValue;
+               if (spanToChange == 'range1') {
+                  destroy('trib');
+                  yellowDiv();
+                  trib(newValue, document.querySelector('.yellow'));
+               }
+               else if (spanToChange == 'range2') {
+                  destroy('pell');
+                  redDiv();
+                  pell(newValue, document.querySelector('.red'));
+               }
+               else if (spanToChange == 'range3'){
+                  destroy('fib');
+                  blueDiv();
+                  fib(newValue, document.querySelector('.blue'));
+               }
+             }
+             window.onload = function() { printValue('slider1', 'rangeValue1'); printValue('slider2', 'rangeValue2'); printValue('slider3', 'rangeValue3');};
+      </script>
+   </body>
+</html>
