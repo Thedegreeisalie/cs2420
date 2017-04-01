@@ -1,0 +1,38 @@
+
+
+#include <vector>
+#include <string>
+#include <iostream>
+
+#include "HashObj.h"
+
+//this template can be found in the class textbook pg 205
+class HashTable
+{
+    public:
+        HashTable();
+        //constructor doesn't have to do anything
+        int tableSize = 149;
+        //there should be more logic to this other then passing the key as a string but there isn't
+        unsigned int hashFunction(HashObj &);
+        
+        bool contains (HashObj) ;
+        
+        //used just by the constructor for fun
+        void makeEmpty();
+        bool insert(HashObj & );
+        bool remove(HashObj & );
+        
+        void printTable();
+
+    private:
+
+        std::vector<HashObj> array;
+        int currentSize;
+        
+        bool isActive(int currentPos ) ;
+        
+        int findPos(HashObj&);
+        void rehash();
+        
+};
