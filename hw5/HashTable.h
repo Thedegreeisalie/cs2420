@@ -12,7 +12,7 @@ class HashTable
     public:
         HashTable();
         //constructor doesn't have to do anything
-        int tableSize = 149;
+        int tableSize = 10;
         //there should be more logic to this other then passing the key as a string but there isn't
         unsigned int hashFunction(HashObj &);
         
@@ -21,6 +21,7 @@ class HashTable
         //used just by the constructor for fun
         void makeEmpty();
         bool insert(HashObj & );
+        int findNext(HashObj &);
         bool remove(HashObj & );
         
         void printTable();

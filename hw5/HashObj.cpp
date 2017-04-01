@@ -11,4 +11,5 @@ HashObj::HashObj()
 {
     this->info = 0;
     this->value = "";
+    this->key = 0;
 }

@@ -1,7 +1,7 @@
 #include "HashTable.h"
-#include <iostream>
+#include "HashObj.h"
+
 #include <fstream>
-#include <vector>
 
 
 /*
@@ -20,7 +20,7 @@ int main() {
     std::ifstream numberFile("fruit.csv");
     
     //keeper of the keys
-    std::vector<unsigned int> hagrid;
+    std::vector<std::string> hagrid;
     std::vector<std::string> maxime;
     
     if (numberFile.is_open())
@@ -35,20 +35,25 @@ int main() {
             // std::cout << key << std::endl;
             std::string value = line.substr(line.find(",")+1, line.length());
             // std::cout << value << std::endl;
+            hagrid.push_back(key);
             maxime.push_back(value);
-            hagrid.push_back(std::stoi(key));
         }
         numberFile.close();
     }
+    
+    HashTable fruitStand = HashTable();
 
     /*
     Pick your 20 favorite fruit from the list provided
         How about the first twenty?
     */
-    for (unsigned int i =0; i < 20; i++)
+    for (unsigned int i =0; i < hagrid.size(); i++)
     {
         //insert them into the hashtable
+        HashObj newb = HashObj(std::stoi(hagrid[i]), maxime[i]);
+        fruitStand.insert(newb);
     }
+    fruitStand.printTable();
     
     return 0;
 }
