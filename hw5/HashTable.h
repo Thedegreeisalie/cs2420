@@ -25,6 +25,8 @@ class HashTable
         bool remove(HashObj & );
         
         void printTable();
+        
+        std::string find(int key);
 
     private:
 
@@ -34,6 +36,7 @@ class HashTable
         bool isActive(int currentPos ) ;
         
         int findPos(HashObj&);
+        
         void rehash();
         
 };

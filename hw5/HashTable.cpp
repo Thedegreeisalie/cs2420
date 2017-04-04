@@ -28,7 +28,25 @@ bool HashTable::isActive(int currentPos )
 {
     return (array[currentPos].info == 1);
 }
-
+std::string HashTable::find(int searchKey)
+{
+    std::string stringThatShouldNeverBeSeen = "tmpvalue shout if prints";
+    HashObj tmp = HashObj(searchKey, stringThatShouldNeverBeSeen);
+    int offset = 1;
+    int currentPos = hashFunction(tmp);
+    
+    while( array[ currentPos ].info != 0 )
+    {
+        if (array[ currentPos ].key == tmp.key)
+            return array[currentPos].value;
+        currentPos += offset; //Ith probe
+        offset += 1;
+        if (currentPos >= array.size())
+            currentPos -= array.size();
+    }
+    
+    return array[currentPos].value;
+}
 int HashTable::findPos(HashObj & x) 
 {
     int offset = 1;
@@ -48,13 +66,12 @@ bool HashTable::insert(HashObj & x)
 {
     int currentPos = findPos(x);
     if (isActive(currentPos))
-        return false;
-    // {
-    //     while(isActive(currentPos))
-    //     {
-    //         currentPos++;
-    //     }
-    // }
+    {
+        while(isActive(currentPos)&&currentPos>array.size())
+        {
+            currentPos++;
+        }
+    }
     
     array[currentPos] = x;
     if(++currentSize > (array.size() /2))
@@ -87,17 +104,19 @@ void HashTable::rehash()
     //create a double the old size array
     
     array.resize(2*OldArray.size());
-    tableSize = array.size();
+    //init empty
     for (unsigned int i = 0; i < tableSize; i++)
         array[i] = HashObj();
-        
+    
+    tableSize = array.size();
     //copy the old over
     currentSize = 0;
-    for (unsigned int j = 0; j < tableSize; j++)
-        {
-            if(OldArray[j].info == 1)
-                insert(OldArray[j]);
-                // currentSize += 1;
-        }
+    for (unsigned int j = 0; j < OldArray.size(); j++)
+    {
+        if(OldArray[j].info == 1)
+            insert(OldArray[j]);
+            // currentSize += 1;
+            OldArray[j].info = 0;
+    }
     
 }

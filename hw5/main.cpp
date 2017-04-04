@@ -47,13 +47,25 @@ int main() {
     Pick your 20 favorite fruit from the list provided
         How about the first twenty?
     */
-    for (unsigned int i =0; i < hagrid.size(); i++)
+    //1-3insert print and rehash the first 20
+    for (unsigned int i =0; i < 21; i++)
     {
         //insert them into the hashtable
         HashObj newb = HashObj(std::stoi(hagrid[i]), maxime[i]);
         fruitStand.insert(newb);
+        if (i== 4 || i== 5 || i== 9 || i== 10 || i == 20)
+        {
+            std::cout << "i = " << i << std::endl;
+            fruitStand.printTable();
+        }
     }
-    fruitStand.printTable();
+    //4.find your favorite 3 fruit
+    std::cout << fruitStand.find(std::stoi(hagrid[1])) << std::endl;
+    std::cout << fruitStand.find(std::stoi(hagrid[2])) << std::endl;
+    std::cout << fruitStand.find(std::stoi(hagrid[3])) << std::endl;
+
+
+    
     
     return 0;
 }
